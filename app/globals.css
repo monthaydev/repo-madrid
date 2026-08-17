@@ -1,26 +1,362 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ==========================================================================
+   GUEDES MALLAS DE PROTECCIÓN — sistema visual "LA MALLA"
+   ==========================================================================
+
+   Dos capas, y la distinción es obligatoria:
+
+   1. TINTAS (@theme)        los valores crudos. Nunca se escriben en un
+                             componente: no dicen qué significan.
+   2. PAPELES (@theme inline) lo que la tinta significa. Es lo que el
+                             componente escribe: bg-fondo, text-tinta...
+
+   La página es un muro encalado de Madrid con estructura de hierro encima.
+   El acento es MINIO: la pintura antioxidante roja que lleva el bastidor
+   antes de instalarse. No es decoración, es el material.
+   ========================================================================== */
+
+@theme {
+  /* --- tintas: cal (el muro) ---
+     Sacadas de las fotos reales de Guedes: las fachadas de los trabajos
+     dan #F2E5D4 y #E9D9CD. Antes esto era un crema neutro; ahora es el
+     color de la pared que sale detrás de la malla. */
+  --color-cal: #f3eee4;
+  --color-cal-2: #ebe4d7;
+  --color-cal-3: #dfd6c7;
+
+  /* --- tintas: hierro (la estructura) ---
+     Los negros dominantes de las fotos son CÁLIDOS (#302F2E, #111211,
+     matiz 8–22). El hierro azulado de antes no existía en ninguna foto. */
+  --color-hierro: #1a1816;
+  --color-hierro-2: #5c5651;
+  --color-hierro-3: #6e6862;
+  --color-hierro-borde: #2e2a27;
+
+  /* --- tintas: minio (la pintura del bastidor) --- */
+  --color-minio: #b4462f;
+  --color-minio-oscuro: #8f3524;
+  --color-minio-claro: #e4714f;
+
+  /* --- tipografía --- */
+  --font-titulo: var(--fuente-archivo), "Arial Black", sans-serif;
+  --font-texto: var(--fuente-archivo), system-ui, sans-serif;
+  --font-tecnica: var(--fuente-mono), ui-monospace, monospace;
+
+  /* --- el módulo de la malla: rombo de 5 cm de lado --- */
+  --malla-modulo: 2.5rem;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* --- papeles: claro (el 90% de la página) --- */
+  --color-fondo: var(--color-cal);
+  --color-superficie: var(--color-cal-2);
+  --color-superficie-2: var(--color-cal-3);
+  --color-tinta: var(--color-hierro);
+  --color-tinta-2: var(--color-hierro-2);
+  --color-tinta-3: var(--color-hierro-3);
+  --color-accion: var(--color-minio);
+  --color-accion-oscuro: var(--color-minio-oscuro);
+
+  /* --- papeles: invertido (taller / cierre) --- */
+  --color-fondo-taller: var(--color-hierro);
+  --color-tinta-taller: var(--color-cal);
+  --color-accion-taller: var(--color-minio-claro);
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    color-scheme: light;
+    --linea: color-mix(in srgb, var(--color-hierro) 14%, transparent);
+    --linea-fuerte: color-mix(in srgb, var(--color-hierro) 26%, transparent);
+  }
+
+  * {
+    border-color: var(--linea);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* la nav mide 4.5rem; el ancla no puede quedar debajo */
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: var(--color-fondo);
+    color: var(--color-tinta);
+    font-family: var(--font-texto);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    font-variation-settings: "wdth" 100;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  /* Archivo variable: el eje de anchura es la voz del proyecto.
+     Ancho + pesado = chapa de acero. Normal = texto que se lee. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-titulo);
+    text-transform: uppercase;
+    text-wrap: balance;
+    letter-spacing: -0.015em;
+    line-height: 0.94;
+    font-variation-settings: "wdth" 115;
+    font-weight: 800;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-minio);
+    color: var(--color-cal);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-minio);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  /* El botón flotante de móvil ocupa la franja inferior */
+  @media (max-width: 767px) {
+    body {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* ------------------------------------------------------------------
+     LA MALLA — la firma del sitio.
+     Retícula de 5×5 dibujada con hairlines. No es un "dot grid" de
+     fondo: es el producto. Por eso el módulo es cuadrado siempre y el
+     trazo es de 1px real, como un hilo.
+     ------------------------------------------------------------------ */
+  .malla {
+    --hilo: color-mix(in srgb, var(--color-hierro) 7%, transparent);
+    position: relative;
+    isolation: isolate;
+  }
+
+  /* La retícula vive en su propia capa. NUNCA como máscara del elemento:
+     `mask-image` recorta también a los hijos, y eso ya nos borró una
+     sección entera de texto. */
+  .malla::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    /* ROMBO, no cuadrado. Las 17 fotos de trabajos reales enseñan una
+       retícula romboidal: es un cuadrado de 5 cm montado a 45°. La
+       gramática del sitio tiene que ser la forma real del producto. */
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        var(--hilo) 0 1px,
+        transparent 1px var(--malla-modulo)
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        var(--hilo) 0 1px,
+        transparent 1px var(--malla-modulo)
+      );
+    background-position: center top;
+    /* La malla se desvanece hacia abajo: es una textura, no papel
+       milimetrado. Sin esto la retícula compite con el texto. */
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 55%);
+    mask-image: linear-gradient(to bottom, #000 0%, transparent 55%);
+  }
+
+  .malla > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .malla-taller {
+    --hilo: color-mix(in srgb, var(--color-cal) 9%, transparent);
+  }
+
+  /* Sobre foto o en hueco pequeño: el módulo se aprieta y no se desvanece */
+  .malla-tensa {
+    --malla-modulo: 1.375rem;
+    --hilo: color-mix(in srgb, var(--color-hierro) 9%, transparent);
+  }
+
+  .malla-tensa::before {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  /* ------------------------------------------------------------------
+     Etiqueta técnica: cotas, medidas, numeración de proceso.
+     Es la voz del taller, no un adorno tipográfico.
+     ------------------------------------------------------------------ */
+  .tecnica {
+    font-family: var(--font-tecnica);
+    font-size: 0.6875rem;
+    line-height: 1.4;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* ------------------------------------------------------------------
+     Botones. Cuadrados (radio 2px): son piezas de chapa, no píldoras.
+     Al pulsar, la pieza se asienta — no rebota, no brilla.
+     ------------------------------------------------------------------ */
+  .boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    min-height: 3rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: 2px;
+    font-family: var(--font-texto);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    font-variation-settings: "wdth" 104;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    /* Nunca parte una etiqueta corta en dos líneas, pero tampoco empuja el
+       ancho de la página: si no cabe, se encoge el texto, no el móvil. */
+    white-space: nowrap;
+    min-width: 0;
+    max-width: 100%;
+    transition:
+      background-color 180ms ease,
+      color 180ms ease,
+      transform 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .boton-accion {
+    background-color: var(--color-minio);
+    color: var(--color-cal);
+    box-shadow: 0 2px 0 0 var(--color-minio-oscuro);
+  }
+
+  .boton-accion:hover {
+    background-color: var(--color-minio-oscuro);
+    box-shadow: 0 0 0 0 var(--color-minio-oscuro);
+    transform: translateY(2px);
+  }
+
+  .boton-hierro {
+    background-color: var(--color-hierro);
+    color: var(--color-cal);
+    box-shadow: 0 2px 0 0 #000;
+  }
+
+  .boton-hierro:hover {
+    box-shadow: 0 0 0 0 #000;
+    transform: translateY(2px);
+  }
+
+  .boton-linea {
+    border: 1px solid var(--linea-fuerte);
+    color: var(--color-hierro);
+    background-color: transparent;
+  }
+
+  .boton-linea:hover {
+    background-color: var(--color-hierro);
+    border-color: var(--color-hierro);
+    color: var(--color-cal);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .boton:hover {
+      transform: none;
+    }
+  }
+
+  /* ------------------------------------------------------------------
+     Contenedor. El sitio respira ancho: es un muro, no una columna.
+     ------------------------------------------------------------------ */
+  .contenedor {
+    width: 100%;
+    max-width: 84rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .contenedor {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  .seccion {
+    padding-block: 4.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .seccion {
+      padding-block: 7rem;
+    }
+  }
+}
+
+@layer utilities {
+  /* Ancho variable de Archivo — la única "fuente display" del proyecto */
+  .ancho-chapa {
+    font-variation-settings: "wdth" 122;
+  }
+  .ancho-normal {
+    font-variation-settings: "wdth" 100;
+  }
+
+  /* ------------------------------------------------------------------
+     Reveal en scroll.
+
+     El estado oculto vive detrás de `.js-reveal`, una clase que el JS
+     pone en <html> antes del primer pintado. Si el script no llega, si
+     falla o si el usuario pide menos movimiento, NADA se esconde: el
+     contenido de una página de venta no puede depender de una animación.
+     ------------------------------------------------------------------ */
+  .js-reveal .entra {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  .js-reveal .entra.visible {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js-reveal .entra {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* El plano técnico se traza hilo a hilo, con la misma regla: si el JS no
+     llega, el dibujo ya está dibujado. `--i` es el orden del trazo. */
+  .js-reveal .dibujo .trazo {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+
+  .js-reveal .dibujo.visible .trazo {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+    transition-delay: calc(var(--i, 0) * 45ms);
+  }
 }
