@@ -14,8 +14,7 @@ export const EMPRESA = {
   nombre: "Guedes Mallas de Protección",
   nombreCorto: "Guedes",
   descripcion:
-    "Instalación de redes y mallas de protección para balcones, ventanas, terrazas y escaleras en Alcalá de Henares y toda la Comunidad de Madrid.",
-  anosExperiencia: 4,
+    "Instalación de redes y mallas de protección para balcones, ventanas, terrazas y escaleras en toda la Comunidad de Madrid.",
   anosGarantia: 3,
   base: "Alcalá de Henares",
   region: "Comunidad de Madrid",
@@ -70,7 +69,7 @@ export const SERVICIOS: Servicio[] = [
     id: "balcones",
     titulo: "Balcones",
     descripcion:
-      "Malla tensada de la barandilla al techo. Sin obra, sin picar la fachada y sin tocar la barandilla original.",
+      "Malla tensada de la barandilla al techo. Sin obra en la fachada y sin tocar la barandilla original.",
     mensaje:
       "Hola, quiero presupuesto para poner red de protección en el balcón.",
     foto: "balcon",
@@ -124,10 +123,12 @@ export const SERVICIOS: Servicio[] = [
 export const FICHA_TECNICA = [
   { cota: "Material", valor: "Poliuretano de alta resistencia" },
   { cota: "Tratamiento", valor: "Protección UV" },
+  { cota: "Fabricación", valor: "Malla fabricada en Europa" },
   { cota: "Luz de malla", valor: "5 × 5 cm" },
   { cota: "Hilos", valor: "28" },
   { cota: "Colores", valor: "Blanco y negro" },
-  { cota: "Anclajes", valor: "Acero, fabricados en taller propio" },
+  { cota: "Anclajes", valor: "Gancho de acero zincado, de importación" },
+  { cota: "Estructura", valor: "Bastidor de acero a medida, de taller propio" },
   { cota: "Garantía", valor: "3 años, red e instalación" },
 ];
 
@@ -187,8 +188,8 @@ export const ZONAS = [
 
 export const PREGUNTAS = [
   {
-    p: "¿Hay que hacer obra o picar la fachada?",
-    r: "No. La malla se tensa sobre anclajes que se fijan al marco, a la barandilla o a un bastidor que fabricamos nosotros. No se pica la fachada y, si algún día se retira, no queda daño a la vista.",
+    p: "¿Hay que hacer obra en la fachada?",
+    r: "No. La malla se tensa sobre anclajes que se fijan al marco, a la barandilla o a un bastidor que fabricamos nosotros. No se hace obra en la fachada y, si algún día se retira, no queda daño a la vista.",
   },
   {
     p: "¿Necesito permiso de la comunidad de vecinos?",
@@ -215,7 +216,7 @@ export const PREGUNTAS = [
     r: "La instalación y la durabilidad de la red. Si la malla se destensa, un anclaje cede o el material se degrada antes de tiempo, volvemos y lo arreglamos sin coste.",
   },
   {
-    p: "¿Trabajáis fuera de Alcalá de Henares?",
-    r: "Sí. El taller está en Alcalá, pero instalamos en toda la Comunidad de Madrid. Escríbenos con tu municipio y te confirmamos el día.",
+    p: "¿Trabajáis en toda la Comunidad de Madrid?",
+    r: "Sí, instalamos en toda la Comunidad de Madrid. Escríbenos con tu municipio y te confirmamos el día.",
   },
 ];

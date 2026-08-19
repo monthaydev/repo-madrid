@@ -48,11 +48,11 @@ const CATALOGO = {
     alto: 1920,
   },
   terraza: {
-    archivo: "/fotos/patio-estructura-metalica.jpg",
-    alt: "Patio interior cubierto con malla de protección sobre estructura metálica",
+    archivo: "/fotos/terraza-vista-arboles.jpg",
+    alt: "Terraza larga cerrada con malla de protección tensada en bastidor metálico, con árboles y la calle al fondo",
     encargo: "—",
-    ancho: 899,
-    alto: 1599,
+    ancho: 1200,
+    alto: 1600,
   },
   escalera: {
     archivo: null,
@@ -78,11 +78,11 @@ const CATALOGO = {
     alto: 899,
   },
   taller: {
-    archivo: "/fotos/instalacion-en-obra.jpg",
-    alt: "Instalador de Guedes tensando la malla de protección en la ventana de una vivienda",
+    archivo: "/fotos/terraza-bastidor-angulo.jpg",
+    alt: "Esquina de un bastidor de acero a medida, con la malla tensada contra el cielo",
     encargo: "—",
-    ancho: 1080,
-    alto: 1920,
+    ancho: 1200,
+    alto: 1600,
   },
 
   /* --- galería de trabajos --- */

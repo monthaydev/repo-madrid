@@ -6,7 +6,7 @@ import { EMPRESA, MENSAJE_GENERAL } from "@/lib/datos";
 
 /** Los cuatro datos que deciden la llamada. Nada de "calidad" ni "confianza". */
 const DATOS = [
-  { dato: "4 años", pie: "instalando redes" },
+  { dato: "5 × 5 cm", pie: "luz de malla · 28 hilos" },
   { dato: "3 años", pie: "de garantía" },
   { dato: "Taller propio", pie: "de herrería" },
   { dato: "9 – 20 h", pie: "todos los días" },
@@ -18,8 +18,6 @@ export function Hero() {
       <div className="contenedor pt-10 pb-14 md:pt-16 md:pb-20">
         <p className="tecnica flex flex-wrap items-center gap-x-3 gap-y-1 text-tinta-3">
           <span className="text-minio">Redes de protección</span>
-          <span aria-hidden="true">/</span>
-          <span>{EMPRESA.base}</span>
           <span aria-hidden="true">/</span>
           <span>Toda la Comunidad de Madrid</span>
         </p>
@@ -38,8 +36,8 @@ export function Hero() {
           <div className="md:col-span-5">
             <p className="max-w-md text-[1.0625rem] leading-relaxed text-tinta-2 md:text-lg">
               Malla de poliuretano de 5 × 5 cm para balcones, ventanas,
-              terrazas y escaleras. Se instala en el día, sin picar la fachada,
-              y lleva {EMPRESA.anosGarantia} años de garantía.
+              terrazas y escaleras. Se instala en el día, sin hacer obra en la
+              fachada, y lleva {EMPRESA.anosGarantia} años de garantía.
             </p>
 
             <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
@@ -69,7 +67,7 @@ export function Hero() {
               />
             </VistaAnotada>
             <p className="tecnica mt-3 text-tinta-3">
-              Trabajo terminado · ático en {EMPRESA.base} · malla blanca
+              Trabajo terminado · ático en la Comunidad de Madrid · malla blanca
             </p>
           </div>
         </div>

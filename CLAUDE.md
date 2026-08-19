@@ -129,6 +129,73 @@ O eixo de largura variável do Archivo é a voz do projeto: expandido e pesado
   `boton-whatsapp.tsx` porque Lucide não traz marcas)
 - **Foto de banco de imagem** — só acervo real da Guedes
 
+### Já disseram que isto está "cara de IA" — pendente, Fluxo 2 ainda não escrito (19/08/2026)
+
+> Status: só diagnóstico. Nada de código muda por causa desta seção até
+> existir um plano aprovado na vault, como manda o FLUXO DE TRABALHO.
+
+O João ouviu de fora que o Guedes está com cara de IA. Antes de mexer em
+qualquer cor, vale entender **de onde essa frase vem no portfólio**, porque
+já aconteceu duas vezes antes e as duas vezes ensinaram algo diferente.
+
+**Origem 1 — Margem+, operação "Atelier" (15/05/2026).** O `claude.md`
+original do Margem+ mandava usar a skill `ui-ux-pro-max` com glassmorphism,
+bento grid e `bg-blue-600`. O próprio Claude diagnosticou por que isso lia
+como "template Vercel default": botão azul chapado, sombra colorida, ícone
+de pizza como mascote, cards `bg-blue-100` sem hierarquia. A correção não
+foi trocar de skill — foi **parar de usar skill de UI genérica** e desenhar
+um sistema autoral (tokens "Petróleo & Papel", tipografia fazendo o
+trabalho de hierarquia, profundidade por camada tonal em vez de sombra
+colorida, motion com causa e direção, e uma marca de verdade: o "+" do nome
+virou motivo visual recorrente). Isso foi implementado — `app/globals.css`
+do Margem+ hoje é literalmente o sistema Atelier.
+
+**Achado colateral, e é um risco real pra cá também:** nem o `claude.md`
+raiz do Margem+ nem o doc canônico da vault (`01 - Visão Geral e UI.md`)
+foram atualizados depois do Atelier — os dois ainda descrevem o sistema
+antigo, quatro meses depois. Isso quase custou caro: numa sessão de
+30/06/2026 no ZP Studio, o João mandou "leia o claude.md e refaça agora" e
+o Claude daquela sessão **voltou o site pro visual genérico azul-galáxia**
+porque era isso que o `claude.md` (desatualizado) mandava fazer. **Lição:
+atualizar este arquivo é parte da entrega, não um follow-up.** Se a Guedes
+algum dia mudar de sistema visual, o `CLAUDE.md` muda na mesma sessão —
+nunca depois.
+
+**Origem 2 — ZP Studio, mesma frase, a mesma noite (30/06/2026).** O João
+escreveu quase literalmente o que disse agora: *"esse site nao ta com um
+design interessante, muito cara de ia"* — e pediu pra olhar sites tipo
+21st.dev/Awwwards e usar "as skills de frontend". O que resolveu não foi a
+skill genérica `ui-ux-pro-max`; foi a skill **`frontend-design`** (nativa do
+Claude Code, sem instalar nada) somada a um princípio novo: **gastar a
+ousadia num lugar só, o resto fica quieto** — um elemento-assinatura de
+verdade (aqui, a régua de movimento do ZP Pics nasceu desse mesmo
+aprendizado: "cinco linhas de 'não' e nenhuma de 'o que entra no lugar'"
+= app correto e sem graça).
+
+**Checklist consolidado do que já foi reprovado como "cara de IA" em
+qualquer um dos cinco projetos** (além do que já está na lista de Proibido
+acima): degradê azul, dot grid de fundo, aurora/blobs, botão pílula com
+glow, ícone genérico dentro de caixa colorida, `bg-blue-600` chapado,
+sombra colorida (`shadow-blue-500/20`), mascote clichê do nicho (o
+equivalente aqui seria um emoji de rede/segurança), título de tela feito
+de `capitalize()` no slug em vez de texto pensado, `confirm()`/`alert()`
+nativo do browser, toast tipo "bem-vindo de volta".
+
+**O que isso significa pra Guedes, quando o Fluxo 2 for escrito:** o
+`globals.css` daqui já não tem nenhum item da lista clássica — a malha, o
+minio como cor-de-ação só, a tipografia Archivo/Martian Mono, os tokens
+extraídos de foto real, tudo isso é exatamente o tipo de sistema autoral
+que o Atelier prescreve. Então a causa provável de "cara de IA" aqui **não
+é token de cor** — é estrutura e ousadia: seções na ordem certa mas com o
+mesmo ritmo visual entre si, sem um elemento de assinatura forte o
+bastante (o que o Atelier chamaria de "correto mas sem graça"). Antes de
+codar qualquer coisa: invocar a skill `frontend-design`, olhar referência
+de qualidade real (não pra copiar, pra calibrar o que é "ousado de
+verdade"), e escrever o plano em
+`CerebroGuedes\02 - Fluxo 2 (Rascunhos)\` no formato do Atelier — fases
+pequenas, cada uma aprovável e reversível, sem quebrar SEO nem
+performance. Só depois disso vira código.
+
 ---
 
 ## A REGRA QUE MAIS DOEU: ANIMAÇÃO NUNCA SEGURA CONTEÚDO

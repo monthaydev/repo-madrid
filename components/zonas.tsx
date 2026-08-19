@@ -1,6 +1,6 @@
 import { Encabezado } from "@/components/encabezado";
 import { BotonWhatsApp } from "@/components/boton-whatsapp";
-import { EMPRESA, ZONAS } from "@/lib/datos";
+import { ZONAS } from "@/lib/datos";
 
 /**
  * Media página de SEO local en una sola lista: cada municipio es una
@@ -13,12 +13,7 @@ export function Zonas() {
         <div className="md:col-span-4">
           <Encabezado
             etiqueta="Zonas"
-            titulo={
-              <>
-                Salimos de {EMPRESA.base}
-                <br />a toda la región.
-              </>
-            }
+            titulo={<>Instalamos en toda la Comunidad de Madrid.</>}
             texto="El taller está en el Corredor del Henares, pero se instala en toda la Comunidad de Madrid."
           />
           <div className="entra mt-8">

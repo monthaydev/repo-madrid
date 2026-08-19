@@ -20,8 +20,8 @@ export function Contacto() {
     { icono: Clock, etiqueta: "Horario", valor: EMPRESA.horario },
     {
       icono: MapPin,
-      etiqueta: "Base",
-      valor: `${EMPRESA.base} · ${EMPRESA.region}`,
+      etiqueta: "Zona",
+      valor: EMPRESA.direccion ?? EMPRESA.region,
     },
   ];
 

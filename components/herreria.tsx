@@ -62,7 +62,7 @@ export function Herreria() {
             />
           </div>
           <p className="tecnica mt-3 text-cal/50">
-            Taller propio · bastidor con minio antes de instalar
+            Bastidor de acero a medida · terraza en la Comunidad de Madrid
           </p>
         </div>
       </div>

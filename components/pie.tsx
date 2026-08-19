@@ -10,8 +10,7 @@ export function Pie() {
             <Marca invertida />
             <p className="mt-5 max-w-xs text-[0.9375rem] leading-relaxed text-cal/60">
               Redes y mallas de protección para balcones, ventanas, terrazas y
-              escaleras. {EMPRESA.anosExperiencia} años instalando, ahora en{" "}
-              {EMPRESA.region}.
+              escaleras en toda la {EMPRESA.region}.
             </p>
           </div>
 
@@ -36,7 +35,7 @@ export function Pie() {
               </li>
               <li className="text-cal/60">{EMPRESA.horario}</li>
               <li className="text-cal/60">
-                {EMPRESA.direccion ?? EMPRESA.base}, {EMPRESA.region}
+                {EMPRESA.direccion ?? EMPRESA.region}
               </li>
             </ul>
           </div>

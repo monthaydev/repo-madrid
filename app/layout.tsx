@@ -25,7 +25,7 @@ const mono = Martian_Mono({
 });
 
 const TITULO =
-  "Redes de Protección en Alcalá de Henares y Madrid | Guedes Mallas";
+  "Redes de Protección en la Comunidad de Madrid | Guedes Mallas";
 const DESCRIPCION =
   "Instalamos mallas de protección para balcones, ventanas, terrazas y escaleras en toda la Comunidad de Madrid. Estructura metálica propia, visita técnica gratuita y 3 años de garantía.";
 
