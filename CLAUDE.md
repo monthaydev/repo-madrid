@@ -115,11 +115,22 @@ a cor vem das fotos.)
 O eixo de largura variável do Archivo é a voz do projeto: expandido e pesado
 = chapa de aço; normal = texto que se lê. **Não acrescente uma quarta fonte.**
 
-### Proibido — já reprovado como "cara de IA" (Prisma e ZP Studio)
+### Proibido — já reprovado como "cara de IA" (Prisma, ZP Studio, e o próprio Guedes)
 
 - **Serifa de alto contraste sobre fundo creme com acento terracota** — o
   combo mais datado de 2025/26. O creme e o terracota ficaram por decisão do
   João; a serifa foi cortada por isso.
+- **Creme + terracota sem serifa também conta.** A skill `frontend-design`
+  calibra isso como um dos três looks-padrão de IA de hoje (fundo creme
+  ≈`#F4F1EA` + acento terracota), com ou sem serifa. Cortar só a serifa e
+  manter o resto da receita **não** tira o cheiro — foi exatamente o erro
+  cometido aqui em 17/08/2026, corrigido em 19/08 com o sistema
+  "anclajes y vanos" abaixo. As cores em si (`cal`/`minio`) ficam — são
+  material real, extraído de foto — o que muda é a estrutura ao redor.
+- **Fios de 1px em quase toda seção, viram "layout de jornal".** É outro dos
+  três looks-padrão (colunas densas, `border` fino em tudo, raio zero). Um
+  hairline por divisor de lista está bem; a página inteira parecendo régua
+  técnica, sem nenhum bloco sólido de cor, é o problema.
 - Glassmorphism / `backdrop-blur` decorativo
 - Aurora, mesh gradient, blobs, glow colorido
 - Botão pílula (`rounded-full`); aqui botão é chapa: raio 2px
@@ -129,14 +140,45 @@ O eixo de largura variável do Archivo é a voz do projeto: expandido e pesado
   `boton-whatsapp.tsx` porque Lucide não traz marcas)
 - **Foto de banco de imagem** — só acervo real da Guedes
 
-### Já disseram que isto está "cara de IA" — pendente, Fluxo 2 ainda não escrito (19/08/2026)
+### A direção estrutural: **"anclajes y vanos"** (19/08/2026)
 
-> Status: só diagnóstico. Nada de código muda por causa desta seção até
-> existir um plano aprovado na vault, como manda o FLUXO DE TRABALHO.
+O vocabulário vem do próprio ofício: toda instalação da Guedes é fixar
+**anclajes** (pontos duros, ancorados) e tensar a malla sobre o **vano**
+(o vão aberto). A página segue essa mesma lógica em vez de nove seções
+iguais no mesmo creme:
 
-O João ouviu de fora que o Guedes está com cara de IA. Antes de mexer em
-qualquer cor, vale entender **de onde essa frase vem no portfólio**, porque
-já aconteceu duas vezes antes e as duas vezes ensinaram algo diferente.
+- **Vãos** (`.seccion`, fundo `cal`, `Encabezado` `tamano="grande"`): Hero,
+  Por qué, Servicios, Trabajos, Zonas, Preguntas, Contacto. É onde se
+  vende — respira mais, o título carrega peso.
+- **Âncoras** (`.seccion-ancora`, fundo `hierro` — `bg-fondo-taller`,
+  classes `malla malla-taller`, `Encabezado` `invertido tamano="pequeno"`):
+  Ficha (`#ficha`), Herrería (`#herreria`), Proceso (`#proceso`) — as três,
+  **contíguas**, formam um único bloco escuro de prova técnica no meio do
+  scroll. Padding mais denso que um vão (`4rem` vs `5,5rem` desktop) — é
+  onde a "conversa" já terminou e começa o dado duro.
+- **Hairline em fundo escuro nunca usa `--linea`/`--linea-fuerte`** — essas
+  duas são tingidas de hierro e ficam invisíveis sobre hierro. Use
+  `border-cal/15` (fraco) ou `border-cal/25` (forte). Para caixa/moldura
+  (não lista), `var(--color-hierro-borde)` continua sendo a opção certa
+  (é mais sutil — ver `herreria.tsx`, `pie.tsx`).
+- **Minio pleno nunca em fundo escuro.** É a mesma regra do ZP Pics com o
+  `rec`: `minio` sobre `hierro` mede ~3,3:1, reprova AA pra texto normal.
+  Use `minio-claro` (`#E4714F`, já existe como `accion-taller`) — é o que
+  `dibujo-tecnico.tsx` faz com a prop `invertido` e o que `proceso.tsx`
+  faz na numeração dos passos.
+- **`Encabezado` tem a prop `tamano`** (`"grande"` default | `"pequeno"`):
+  grande vende, pequeno rotula um bloco de dado duro. Não é sobre tamanho
+  de tela — é sobre o papel da seção.
+- **`DibujoTecnico` tem a prop `invertido`**: troca `text-hierro`/
+  `fill-hierro` por `text-cal`/`fill-cal`, e `minio` por `minio-claro`.
+  Nunca reimplemente o SVG duas vezes — sempre passe a prop.
+
+### Como o Guedes chegou a "cara de IA" mesmo seguindo a lista — resolvido em 19/08/2026
+
+O João ouviu de fora que o Guedes estava com cara de IA. Vale registrar
+**de onde essa frase vem no portfólio**, porque já tinha acontecido duas
+vezes antes e as duas vezes ensinaram algo diferente — e a terceira vez
+(aqui) ensinou uma terceira coisa.
 
 **Origem 1 — Margem+, operação "Atelier" (15/05/2026).** O `claude.md`
 original do Margem+ mandava usar a skill `ui-ux-pro-max` com glassmorphism,
@@ -181,20 +223,50 @@ equivalente aqui seria um emoji de rede/segurança), título de tela feito
 de `capitalize()` no slug em vez de texto pensado, `confirm()`/`alert()`
 nativo do browser, toast tipo "bem-vindo de volta".
 
-**O que isso significa pra Guedes, quando o Fluxo 2 for escrito:** o
-`globals.css` daqui já não tem nenhum item da lista clássica — a malha, o
-minio como cor-de-ação só, a tipografia Archivo/Martian Mono, os tokens
-extraídos de foto real, tudo isso é exatamente o tipo de sistema autoral
-que o Atelier prescreve. Então a causa provável de "cara de IA" aqui **não
-é token de cor** — é estrutura e ousadia: seções na ordem certa mas com o
-mesmo ritmo visual entre si, sem um elemento de assinatura forte o
-bastante (o que o Atelier chamaria de "correto mas sem graça"). Antes de
-codar qualquer coisa: invocar a skill `frontend-design`, olhar referência
-de qualidade real (não pra copiar, pra calibrar o que é "ousado de
-verdade"), e escrever o plano em
-`CerebroGuedes\02 - Fluxo 2 (Rascunhos)\` no formato do Atelier — fases
-pequenas, cada uma aprovável e reversível, sem quebrar SEO nem
-performance. Só depois disso vira código.
+**O diagnóstico:** o `globals.css` daqui já não tinha nenhum item da lista
+clássica — a malha, o minio como cor-de-ação só, a tipografia Archivo/
+Martian Mono, os tokens extraídos de foto real. Então a causa **não era
+token de cor** — era estrutura: seis das nove seções com a mesma forma
+(`Encabezado` à esquerda, grid de 12, listas com fio), nenhuma hierarquia
+de importância, e zero momento de assinatura. Correto e sem graça, exatamente
+como o ZP Pics já tinha descrito o próprio erro antes de ter uma régua de
+movimento.
+
+**A correção, plano em `CerebroGuedes\02 - Fluxo 2\Reformulacao Visual —
+Ritmo e Assinatura.md`, aprovado e executado em 19/08/2026:**
+
+1. Removido um bug real que ajudava a dar essa impressão: a lista de
+   Serviços tinha um visor de foto que seguia o ponteiro (herdado do ZP
+   Studio) e travava no meio da tela quando o visitante rolava com a roda
+   do mouse — `pointermove`/`pointerleave` não disparam em scroll de roda.
+   Virou miniatura fixa, em tudo — GSAP saiu do projeto inteiro.
+2. Consertados os vazios de desktop: `por-que.tsx` pulava uma coluna
+   inteira; `preguntas.tsx`/`zonas.tsx` tinham cabeçalho de 420px ao lado
+   de conteúdo que não enchia a altura.
+3. A direção **"anclajes y vanos"**, documentada acima.
+4. A assinatura: o hero deixou de ter uma foto e passou a **ser** a foto,
+   sangrando de ponta a ponta — ver `hero.tsx`.
+
+**Achado que mudou o plano no meio da execução, e vale registrar:** a
+proposta original punha o título do hero **direto sobre o céu da foto**,
+apostando que céu é uma zona visualmente uniforme. Medi o contraste de
+verdade, pixel a pixel, contra o arquivo real
+(`atico-malla-blanca-alcala.jpg`) — e não é uniforme: antena, sombra da
+própria malha e borda da cobertura cruzam a zona onde o título cairia, e em
+vários pontos o contraste hierro/foto caía pra ~1:1. Texto direto ali teria
+ficado ilegível em alguns pontos, mesmo sem eu poder ver a tela renderizada.
+A solução foi a mesma receita que a cota do `<VistaAnotada>` já usa —
+**chapa `bg-cal` sólida por baixo do texto**, nunca cor direto sobre foto de
+tom variável — só que na escala do título inteiro, não só da legenda.
+**Lição pro próximo hero-com-foto:** meça o contraste real do arquivo antes
+de prometer "céu é seguro" — "parece uniforme" e "é uniforme" são coisas
+diferentes, e dá pra medir sem precisar renderizar nada (`System.Drawing` +
+fórmula de luminância relativa do WCAG resolve).
+
+> [!warning] Não verificado visualmente
+> Esta rodada não teve ferramenta de screenshot/browser disponível. `pnpm
+> lint` e `pnpm build` estão limpos, mas ninguém olhou a página renderizada
+> em 360/390/768/1440px. Isso ainda está em aberto — ver PENDÊNCIAS.
 
 ---
 
@@ -236,23 +308,31 @@ com a textura. Se for usar máscara, use em pseudo-elemento.
 
 - **Next.js 16** (App Router, Turbopack) · **React 19** · **TS** · **Tailwind 4**
 - **pnpm** — o projeto usa `pnpm-lock.yaml`. Nunca instalar com `npm`.
-- **GSAP + `@gsap/react`** — só o traçado da malha do Hero
-  (`vista-con-malla.tsx`). Importe sempre de `@/lib/gsap`.
 - **lucide-react** — ícones.
-- **Sem ScrollTrigger.** Está fora de `lib/gsap.ts` de propósito: ~30 kB para
-  ninguém, numa página cujo objetivo declarado é ranquear. Quando aparecer o
-  primeiro momento de scroll de verdade, registra-se lá — não no componente.
+- **Sem lib de animação.** Teve GSAP até 19/08/2026, só na lista de Serviços
+  (um visor de foto que seguia o ponteiro em desktop). Foi removido —
+  congelava no meio da tela quando o visitante rolava com a roda do mouse
+  em vez de mover o cursor (`pointermove`/`pointerleave` não disparam em
+  scroll de roda), e no fim das contas mostrava **menos** obra no desktop
+  do que a miniatura fixa já mostrava no mobile. Motion hoje é só CSS:
+  `transition`, `.js-reveal` + `IntersectionObserver` (ver seção seguinte)
+  e `stroke-dashoffset` no desenho técnico. **Antes de adicionar qualquer
+  lib de animação de novo, escreva no vault por quê** — a régua é a mesma
+  do ZP Pics: ~30 kB de menos numa página cujo objetivo declarado é
+  ranquear, e cada lib nova é mais uma chance de decisão-por-timeout ou
+  travamento silencioso (ver a seção seguinte).
+- **Sem ScrollTrigger, sem `lib/gsap.ts`.** Se aparecer o primeiro momento de
+  scroll de verdade que precise de uma lib, decide-se então — não antes.
 
 ### Regras de motion
 
 1. Movimento só como **resposta a uma ação** ou como **entrada única** de um
    elemento. Nada em laço, nada que se mexa sozinho. (régua herdada do ZP Pics)
-2. Animar por frame? Escreva no DOM via `ref` (`gsap.quickTo`). Nunca
-   `setState` a 60 fps — ver `lista-servicios.tsx`.
-3. Tudo que é caro passa por `gsap.matchMedia()` com as MQ nomeadas de
-   `lib/gsap.ts`. O seguimento do ponteiro nos serviços nem registra listener
-   fora de `MQ_ESCRITORIO_MOVIMIENTO`.
-4. `prefers-reduced-motion` desliga de verdade — inclusive o `.js-reveal`.
+2. `prefers-reduced-motion` desliga de verdade — inclusive o `.js-reveal`.
+3. Nada de motion cujo estado dependa de um evento que pode não disparar
+   (viu a lição do visor da lista de Serviços, acima). Se o gesto depende
+   de `pointermove`, cubra também `pointerleave` do contêiner inteiro,
+   `scroll` e `blur` da janela — ou não use o gesto.
 
 ---
 
@@ -271,13 +351,12 @@ components/
   proceso · zonas · preguntas · contacto · pie · barra-movil
   vista-anotada.tsx     ← A ASSINATURA (ver abaixo)
   dibujo-tecnico.tsx    plano do taller, CSS puro, server component
-  lista-servicios.tsx   lista tipográfica + foto no ponteiro (só desktop)
+  lista-servicios.tsx   lista tipográfica + miniatura real, sem JS
   formulario-visita.tsx redige a mensagem do WhatsApp, sem servidor
   foto.tsx  marca.tsx  encabezado.tsx  boton-whatsapp.tsx  revelados.tsx
 lib/
   datos.ts    FONTE ÚNICA do negócio (NAP, serviços, FAQ, zonas, mensagens)
   fotos.ts    MANIFESTO ÚNICO de fotos
-  gsap.ts     ponto de entrada único do GSAP
 ```
 
 ### `lib/datos.ts` é lei
@@ -294,9 +373,10 @@ real da Guedes** (Drive do cliente, 17/08/2026). Nunca banco de imagem.
 
 Enquanto `archivo` for `null`, `<Foto>` pinta um **hueco técnico com o
 encargo escrito**, e quem depende daquela foto se adapta sozinho — a lista
-de serviços, por exemplo, simplesmente não mostra visor no hover de
-`escaleras` e `gato`, que são as duas que ainda faltam. Nunca enseñe um
-placeholder de maquete no meio de fotos reais.
+de serviços, por exemplo, simplesmente não reserva miniatura para
+`escaleras` e `gato`, que são as duas que ainda faltam (o título ocupa o
+espaço que a foto ocuparia, pra não desalinhar as colunas das outras
+linhas). Nunca enseñe um placeholder de maquete no meio de fotos reais.
 
 Foto nova = arquivo em `public/fotos/` + entrada no manifesto com `ancho`,
 `alto` e `alt` reais.
@@ -381,6 +461,27 @@ nenhuma landing ranqueia sozinha.
 | **NIF/NIE e nome fiscal** | `app/aviso-legal/page.tsx` — obrigatório por lei na Espanha |
 | **Domínio definitivo** | `EMPRESA.sitio` (hoje `guedesmallas.es`, provisório) |
 | **Instagram, se houver** | `EMPRESA.redes` + `sameAs` do schema |
+
+---
+
+## PENDÊNCIA TÉCNICA (bloqueia publicar a reforma "anclajes y vanos")
+
+A rodada de 19/08/2026 (bug do visor, vazios de desktop, hero-firma) foi
+inteira sem ferramenta de screenshot/browser disponível na sessão.
+`pnpm lint` e `pnpm build` estão limpos, o contraste do hero foi medido
+pixel a pixel contra o arquivo real — mas **ninguém olhou a página
+renderizada**. Antes de considerar essa reforma pronta pra cliente:
+
+- [ ] Rodar `pnpm dev` e olhar em 360, 390, 768, 1440 e 1920px
+- [ ] Conferir se o card do hero não invade a área da cota (`marca: {x:78,
+      y:76}` em `hero.tsx`) em nenhuma largura
+- [ ] Conferir se "NO LE QUITA OJO." não quebra de forma estranha dentro do
+      card em nenhum breakpoint (o card é bem mais estreito que o hero
+      antigo — ver o porquê em DIREÇÃO VISUAL)
+- [ ] Passar o dedo/mouse pela lista de Serviços em desktop — miniatura tem
+      que aparecer sempre, sem depender de hover
+- [ ] `prefers-reduced-motion` e navegação por teclado nas três âncoras
+      novas (Ficha, Herrería, Proceso)
 
 ---
 

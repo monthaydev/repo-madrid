@@ -13,6 +13,11 @@
  * Sin JS ni animación: componente de servidor. El trazado es CSS puro,
  * disparado por la clase `.visible` que pone el observador de <Revelados>.
  * Así el plano NUNCA depende de que una animación llegue a ejecutarse.
+ *
+ * `invertido`: para cuando el plano vive sobre fondo hierro (anclaje
+ * oscuro). Nunca usa `text-minio`/`fill-minio` en ese caso — es el mismo
+ * motivo por el que `herreria.tsx` usa `minio-claro`: el minio pleno pierde
+ * contraste AA sobre hierro. Ver la tabla de contraste en CLAUDE.md.
  */
 
 /* --- el paño --- */
@@ -43,7 +48,17 @@ const fuera = (p: { x: number; y: number }, d: number) => ({
   y: p.y - d * Math.SQRT1_2,
 });
 
-export function DibujoTecnico() {
+type Props = {
+  invertido?: boolean;
+};
+
+export function DibujoTecnico({ invertido = false }: Props) {
+  const base = invertido ? "text-cal" : "text-hierro";
+  const suave = invertido ? "text-cal/60" : "text-tinta-3";
+  const acento = invertido ? "text-minio-claro" : "text-minio";
+  const acentoFill = invertido ? "fill-minio-claro" : "fill-minio";
+  const baseFill = invertido ? "fill-cal" : "fill-hierro";
+
   const hilos: { d: string; i: number }[] = [];
   let orden = 0;
   for (let k = -RADIO; k <= RADIO; k++) {
@@ -66,7 +81,7 @@ export function DibujoTecnico() {
   return (
     <svg
       viewBox="0 0 380 280"
-      className="dibujo entra w-full text-hierro"
+      className={`dibujo entra w-full ${base}`}
       role="img"
       aria-label="Plano de la malla: rombos de 5 centímetros de lado, tejidos con 28 hilos"
     >
@@ -101,13 +116,13 @@ export function DibujoTecnico() {
         fill="none"
         stroke="currentColor"
         strokeWidth={1}
-        className="text-tinta-3"
+        className={suave}
         strokeDasharray="3 3"
       />
       <text
         x="14"
         y="256"
-        className="fill-current text-tinta-3"
+        className={`fill-current ${suave}`}
         style={{ font: "500 10px var(--font-tecnica)", letterSpacing: "1.1px" }}
       >
         PAÑO
@@ -123,14 +138,14 @@ export function DibujoTecnico() {
       <text
         x={r(O.x)}
         y="256"
-        className="fill-current text-tinta-3"
+        className={`fill-current ${suave}`}
         style={{ font: "500 10px var(--font-tecnica)", letterSpacing: "1.1px" }}
       >
         DETALLE 2:1
       </text>
 
       {/* cota: 5 cm de lado */}
-      <g stroke="currentColor" strokeWidth={1} fill="none" className="text-minio">
+      <g stroke="currentColor" strokeWidth={1} fill="none" className={acento}>
         <line x1={r(c1.x)} y1={r(c1.y)} x2={r(c2.x)} y2={r(c2.y)} />
         <line x1={r(c1.x - t)} y1={r(c1.y - t)} x2={r(c1.x + t)} y2={r(c1.y + t)} />
         <line x1={r(c2.x - t)} y1={r(c2.y - t)} x2={r(c2.x + t)} y2={r(c2.y + t)} />
@@ -139,7 +154,7 @@ export function DibujoTecnico() {
         x={r(medio.x - 6)}
         y={r(medio.y - 6)}
         textAnchor="end"
-        className="fill-minio"
+        className={acentoFill}
         style={{ font: "600 11px var(--font-tecnica)", letterSpacing: "1.2px" }}
       >
         5 CM
@@ -151,20 +166,20 @@ export function DibujoTecnico() {
           cx={r((E.x + S.x) / 2)}
           cy={r((E.y + S.y) / 2)}
           r={3}
-          className="fill-minio"
+          className={acentoFill}
         />
         <path
           d={`M${r((E.x + S.x) / 2)} ${r((E.y + S.y) / 2)} L${r(E.x + 6)} ${r(S.y + 18)} L366 ${r(S.y + 18)}`}
           fill="none"
           stroke="currentColor"
           strokeWidth={1}
-          className="text-tinta-3"
+          className={suave}
         />
         <text
           x="366"
           y={r(S.y + 12)}
           textAnchor="end"
-          className="fill-hierro"
+          className={baseFill}
           style={{ font: "600 11px var(--font-tecnica)", letterSpacing: "1.2px" }}
         >
           28 HILOS

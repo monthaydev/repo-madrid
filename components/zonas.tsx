@@ -9,14 +9,15 @@ import { ZONAS } from "@/lib/datos";
 export function Zonas() {
   return (
     <section id="zonas" className="seccion border-b border-[var(--linea)]">
-      <div className="contenedor grid gap-10 md:grid-cols-12 md:gap-16">
-        <div className="md:col-span-4">
+      <div className="contenedor">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <Encabezado
             etiqueta="Zonas"
             titulo={<>Instalamos en toda la Comunidad de Madrid.</>}
             texto="El taller está en el Corredor del Henares, pero se instala en toda la Comunidad de Madrid."
+            className="max-w-2xl"
           />
-          <div className="entra mt-8">
+          <div className="entra shrink-0">
             <BotonWhatsApp
               variante="linea"
               mensaje="Hola, ¿instaláis redes de protección en mi zona? Estoy en "
@@ -26,21 +27,19 @@ export function Zonas() {
           </div>
         </div>
 
-        <div className="md:col-span-8">
-          <ul className="entra flex flex-wrap gap-x-2 gap-y-3">
-            {ZONAS.map((z) => (
-              <li
-                key={z}
-                className="border border-[var(--linea)] px-3 py-2 text-[0.9375rem] text-tinta-2"
-              >
-                {z}
-              </li>
-            ))}
-          </ul>
-          <p className="tecnica entra mt-6 text-tinta-3">
-            ¿No ves tu municipio? Escríbenos igualmente
-          </p>
-        </div>
+        <ul className="entra mt-10 flex flex-wrap gap-x-2 gap-y-3 md:mt-12">
+          {ZONAS.map((z) => (
+            <li
+              key={z}
+              className="border border-[var(--linea)] px-3 py-2 text-[0.9375rem] text-tinta-2"
+            >
+              {z}
+            </li>
+          ))}
+        </ul>
+        <p className="tecnica entra mt-6 text-tinta-3">
+          ¿No ves tu municipio? Escríbenos igualmente
+        </p>
       </div>
     </section>
   );

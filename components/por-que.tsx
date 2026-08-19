@@ -13,7 +13,7 @@ export function PorQue() {
   return (
     <section className="seccion malla border-b border-[var(--linea)] bg-superficie">
       <div className="contenedor grid gap-12 md:grid-cols-12 md:gap-14">
-        <div className="md:col-span-6">
+        <div className="md:col-span-5">
           <Encabezado
             etiqueta="Por qué"
             titulo={<>Nadie pone la red después.</>}
@@ -35,7 +35,7 @@ export function PorQue() {
           />
         </div>
 
-        <div className="md:col-span-5 md:col-start-8 md:pt-16">
+        <div className="md:col-span-6 md:col-start-7">
           <ul className="entra border-t border-[var(--linea-fuerte)]">
             {CAMBIOS.map((c) => (
               <li

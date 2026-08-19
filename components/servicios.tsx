@@ -20,7 +20,7 @@ export function Servicios() {
               <Foto
                 key={s.id}
                 nombre={s.foto}
-                sizes="(min-width: 768px) 192px, 56px"
+                sizes="(min-width: 768px) 112px, 80px"
                 className="h-full w-full"
               />
             ) : null,

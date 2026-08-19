@@ -13,12 +13,13 @@ export function Herreria() {
   return (
     <section
       id="herreria"
-      className="seccion malla malla-taller bg-fondo-taller text-tinta-taller"
+      className="seccion-ancora malla malla-taller bg-fondo-taller text-tinta-taller"
     >
       <div className="contenedor grid gap-12 md:grid-cols-12 md:gap-16">
         <div className="md:col-span-6">
           <Encabezado
             invertido
+            tamano="pequeno"
             etiqueta="El diferencial"
             titulo={
               <>

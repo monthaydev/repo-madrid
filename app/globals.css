@@ -305,7 +305,20 @@
 
   @media (min-width: 768px) {
     .seccion {
-      padding-block: 7rem;
+      padding-block: 5.5rem;
+    }
+  }
+
+  /* Anclaje: bloque de dato duro (ficha, herrería, proceso). Más denso que
+     un vano a propósito — es la diferencia entre "conversa" y "conversa
+     terminó, aquí está el número". Ver CLAUDE.md > "anclajes y vanos". */
+  .seccion-ancora {
+    padding-block: 3.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .seccion-ancora {
+      padding-block: 4rem;
     }
   }
 }
