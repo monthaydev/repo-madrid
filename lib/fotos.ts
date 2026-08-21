@@ -63,12 +63,11 @@ const CATALOGO = {
     alto: 1500,
   },
   gato: {
-    archivo: null,
-    alt: "Gato asomado a una ventana protegida con red de seguridad",
-    encargo:
-      "Un gato o un perro junto a la red instalada. Es la que más se comparte y no tenemos ninguna.",
+    archivo: "/fotos/gato-taburete-colores.jpg",
+    alt: "Gato blanco subido a un taburete en un balcón con red de protección, rodeado de plantas y muebles de colores",
+    encargo: "—",
     ancho: 1200,
-    alto: 1500,
+    alto: 1600,
   },
   estructura: {
     archivo: "/fotos/cubierta-malla-estructura.jpg",
@@ -135,6 +134,78 @@ const CATALOGO = {
     ancho: 1599,
     alto: 899,
   },
+
+  /* --- el gato, la prueba de que aguanta --- */
+  gatoTejado: {
+    archivo: "/fotos/gato-silla-roja-tejado.jpg",
+    alt: "Gato blanco sentado junto a una silla en un balcón con red de protección, con tejados de zinc rojo al fondo",
+    encargo: "—",
+    ancho: 1200,
+    alto: 1600,
+  },
+  gatoEquilibrio: {
+    archivo: "/fotos/gato-taburetes-equilibrio.jpg",
+    alt: "Gato saltando entre dos taburetes en un balcón protegido con red, con la malla tensada al fondo",
+    encargo: "—",
+    ancho: 1200,
+    alto: 1600,
+  },
+  gatoCarrito: {
+    archivo: "/fotos/gato-carrito-lampara.jpg",
+    alt: "Gato tumbado junto a un carrito de plantas, visto desde dentro de casa a través de la puerta corredera con red de protección",
+    encargo: "—",
+    ancho: 1200,
+    alto: 1600,
+  },
+  gatoPerfilTejados1: {
+    archivo: "/fotos/gato-perfil-tejados-1.jpg",
+    alt: "Gato de espaldas mirando hacia los edificios de enfrente a través de la red de protección del balcón",
+    encargo: "—",
+    ancho: 1200,
+    alto: 1600,
+  },
+  gatoPerfilTejados2: {
+    archivo: "/fotos/gato-perfil-tejados-2.jpg",
+    alt: "Gato de espaldas junto a una silla, mirando hacia los edificios de enfrente a través de la red de protección",
+    encargo: "—",
+    ancho: 1200,
+    alto: 1600,
+  },
+  gatoTumbadoPuerta: {
+    archivo: "/fotos/gato-tumbado-puerta.jpg",
+    alt: "Gato tumbado en el balcón, visto desde el salón a través de la puerta corredera con red de protección",
+    encargo: "—",
+    ancho: 1200,
+    alto: 1600,
+  },
+  gatoMirandoArriba: {
+    archivo: "/fotos/gato-mirando-arriba.jpg",
+    alt: "Gato de perfil mirando hacia arriba, con los edificios y la red de protección al fondo",
+    encargo: "—",
+    ancho: 1200,
+    alto: 1600,
+  },
+  gatoTumbadoPuerta2: {
+    archivo: "/fotos/gato-tumbado-puerta-2.jpg",
+    alt: "Gato tumbado en el balcón, visto desde dentro de casa junto a un carrito de plantas de colores",
+    encargo: "—",
+    ancho: 1200,
+    alto: 1600,
+  },
+  gatoPrimerPlano: {
+    archivo: "/fotos/gato-primer-plano-cara.jpg",
+    alt: "Primer plano de la cara de un gato blanco mirando a cámara en un balcón con red de protección",
+    encargo: "—",
+    ancho: 1200,
+    alto: 1600,
+  },
+  gatoEspaldaTejados: {
+    archivo: "/fotos/gato-espalda-tejados.jpg",
+    alt: "Gato de espaldas mirando hacia los tejados a través de la red de protección del balcón",
+    encargo: "—",
+    ancho: 1200,
+    alto: 1600,
+  },
 } satisfies Record<string, Foto>;
 
 export type NombreFoto = keyof typeof CATALOGO;
@@ -147,16 +218,37 @@ export function foto(nombre: NombreFoto): Foto {
   return FOTOS[nombre];
 }
 
-/** Los trabajos de la parrilla, en el orden que se ven. Seis verticales:
- *  es el formato en el que Guedes hace las fotos con el móvil. */
+/** Los trabajos de la parrilla, en el orden que se ven. Verticales:
+ *  es el formato en el que Guedes hace las fotos con el móvil. Las dos del
+ *  gato están intercaladas a propósito, no al final: rompen el ritmo
+ *  estático de las fotos de obra sin agruparse en un bloque aparte. */
 export const GALERIA: NombreFoto[] = [
   "obraCalle",
   "obraCiudad",
+  "gatoTejado",
   "obraCelosia",
   "obraInterior",
+  "gatoEquilibrio",
   "obraBloque",
   "obraToldo",
 ];
 
 /** La única apaisada del lote: cierra la sección a todo el ancho. */
 export const GALERIA_ANCHA: NombreFoto = "obraPared";
+
+/**
+ * El resto del reportaje del gato: mismo balcón, mismo bicho, ángulos
+ * repetidos entre sí — por eso no compiten con `GALERIA` (que es un
+ * trabajo por composición) y van en una tira aparte, más pequeña y más
+ * densa, tipo hoja de contacto. Ver `<Trabajos>`.
+ */
+export const GATO_MOSAICO: NombreFoto[] = [
+  "gatoCarrito",
+  "gatoPerfilTejados1",
+  "gatoPerfilTejados2",
+  "gatoTumbadoPuerta",
+  "gatoMirandoArriba",
+  "gatoTumbadoPuerta2",
+  "gatoPrimerPlano",
+  "gatoEspaldaTejados",
+];

@@ -1,7 +1,7 @@
 import { Encabezado } from "@/components/encabezado";
 import { Foto } from "@/components/foto";
 import { BotonWhatsApp } from "@/components/boton-whatsapp";
-import { GALERIA, GALERIA_ANCHA } from "@/lib/fotos";
+import { GALERIA, GALERIA_ANCHA, GATO_MOSAICO } from "@/lib/fotos";
 
 /**
  * La prueba. No hay testimonios (briefing: "no"), así que lo que convence
@@ -56,6 +56,30 @@ export function Trabajos() {
             sizes="(min-width: 1440px) 1360px, 100vw"
             className="h-full w-full"
           />
+        </div>
+
+        {/* El reportaje entero del gato, aparte del trabajo: son ángulos
+            repetidos del mismo balcón, así que van pequeños y densos, tipo
+            hoja de contacto, en vez de competir por espacio con la obra de
+            arriba. */}
+        <div className="entra mt-10">
+          <p className="tecnica text-tinta-3">
+            Y el gato, tranquilo — misma visita, once fotos
+          </p>
+          <ul className="mt-4 grid grid-cols-4 gap-1.5 sm:grid-cols-6 md:grid-cols-8">
+            {GATO_MOSAICO.map((nombre) => (
+              <li
+                key={nombre}
+                className="relative aspect-square overflow-hidden bg-superficie-2"
+              >
+                <Foto
+                  nombre={nombre}
+                  sizes="(min-width: 768px) 12vw, 25vw"
+                  className="h-full w-full"
+                />
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="entra mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">

@@ -455,7 +455,7 @@ nenhuma landing ranqueia sozinha.
 |---|---|
 | ~~Fotos dos trabalhos~~ | ✅ 13 fotos reais entregues em 17/08/2026 |
 | **Foto de escada/hueco interior** | `lib/fotos.ts` → `escalera` (único serviço sem foto) |
-| **Foto com gato ou cachorro** | `lib/fotos.ts` → `gato` — é a que mais se compartilha |
+| ~~Foto com gato ou cachorro~~ | ✅ 11 fotos entregues em 21/08/2026 — `lib/fotos.ts` → `gato`, `gatoTejado`, `gatoEquilibrio` na `GALERIA` de `Trabajos`, e as outras 8 numa tira `GATO_MOSAICO` na mesma seção |
 | **Foto do taller com o minio** | seria a prova do diferencial de herrería; hoje só há foto de instalação |
 | **Endereço exato** | `EMPRESA.direccion` — ele disse que quer mostrar |
 | **NIF/NIE e nome fiscal** | `app/aviso-legal/page.tsx` — obrigatório por lei na Espanha |
