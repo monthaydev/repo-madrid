@@ -55,7 +55,7 @@ export function Cabecera() {
             variante="hierro"
             className="hidden !min-h-11 !px-4 !text-[0.8125rem] md:inline-flex"
           >
-            Pedir visita
+            Pedir Pressuposto
           </BotonWhatsApp>
           <button
             type="button"
